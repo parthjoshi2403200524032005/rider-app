@@ -1,7 +1,7 @@
 // Footer.js
 import React from 'react';
-import man from '../image/man.jpg'
-import man2 from '../image/man2.jpg'
+import man from '../images/man.jpg'
+import man2 from '../images/man2.jpg'
 
 export const Footer = () => {
   return (

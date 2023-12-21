@@ -1,20 +1,15 @@
 import React from "react";
-import logo from "../image/logo.png";
-
+import logo from "../images/logo.png";
+import { useNavigate } from "react-router-dom";
+// import { useAuth0 } from "@auth0/auth0-react";
 import Slider from "./slider";
 import { Footer } from "./footer";
 
-// import { useNavigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
-
 const Navbar = () => {
 
-  const { loginWithRedirect, logout, user, isAuthenticated, isLoading } =
-    useAuth0();
-  // const navigate = useNavigate();
-  if (isLoading) {
-    return <div className="text-center">Loading ...</div>;
-  }
+  // const { isLoading } = useAuth0();
+  const navigate = useNavigate();
+ 
   return (
     <>
       <nav className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 p-4 fixed top-0 w-full z-50">
@@ -39,38 +34,11 @@ const Navbar = () => {
               Contact
             </li>
           </ul>
-          <ul className="flex items-center space-x-4 ">
-      <li className="list-none">
-        {isAuthenticated && (
-          <>
-          <p className="text-white font-semibold ml-[20px]">{user.name}</p>
-         
-          </>
-        )}
-      </li>
-      {isAuthenticated ? (
-        <li>
-          <span
-            className="text-white hover:text-black cursor-pointer transition duration-400 ease-in-out"
-            onClick={() =>
-              logout({ logoutParams: { returnTo: window.location.origin } })
-            }
-          >
-            Logout
-          </span>
-        </li>
-      ) : (
-        <li>
-          <span
-            className="text-white hover:text-black cursor-pointer transition duration-400 ease-in-out ml-[100px]"
-            onClick={() => loginWithRedirect()}
-          >
-            Login
-          </span>
-        </li>
-      )}
+       
+    
+       <div className="text-white hover:text-gray-400 hover:bg-white cursor-pointer transition duration-400 ease-in-out ml-[100px] border-inherit border-2 border-solid pl-[10px] pr-[10px] " onClick={()=>navigate("/login")}>login</div>
       
-    </ul>
+    
     </div>
           <div className="flex space-x-4"></div>
         </div>

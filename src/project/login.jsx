@@ -94,7 +94,7 @@ const Login = () => {
             type="submit"
             onClick={()=>navigate("/")}   
           >
-            Login parth
+            Login 
           </button>
         </form>
       </div>

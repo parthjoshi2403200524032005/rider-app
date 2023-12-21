@@ -92,7 +92,7 @@ const Login = () => {
           <button
             className="bg-blue-500 text-white p-2 rounded-[10px] hover:bg-blue-600"
             type="submit"
-            onClick={()=>navigate("/")}
+            onClick={()=>navigate("/")}   
           >
             Login
           </button>

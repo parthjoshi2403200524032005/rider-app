@@ -104,7 +104,7 @@ const Navbar = () => {
            
 
             <div className="flex items-center space-x-[100px]">
-            <button className="text-white hover:text-gray-400 hover:bg-white cursor-pointer transition duration-400 ease-in-out border-inherit border-2 border-solid pl-[10px] pr-[10px] rounded "  onClick={() => navigate("/Shoping")}>Shop Now</button>
+            <button className="text-white hover:text-gray-400 hover:bg-white cursor-pointer transition duration-400 ease-in-out border-inherit border-2 border-solid pl-[10px] pr-[10px] rounded "  onClick={() => navigate("/Shoping")}>Shop Now</button> 
               {isLoggedIn ? (
                 <button
                   className="text-white hover:text-gray-400 hover:bg-white cursor-pointer transition duration-400 ease-in-out border-inherit border-2 border-solid pl-[10px] pr-[10px] rounded "

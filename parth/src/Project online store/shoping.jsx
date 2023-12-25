@@ -96,7 +96,7 @@ const Shoping = () => {
     },
     {
       id: 3,
-      name: "green-peas",
+      name: "green-peas", 
       price: 25,
       img: "https://www.bigbasket.com/media/uploads/p/m/103692_2-safal-frozen-green-peas.jpg?tr=w-1920,q=80",
     },

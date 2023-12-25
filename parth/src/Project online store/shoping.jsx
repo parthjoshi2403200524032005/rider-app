@@ -107,7 +107,7 @@ const Shoping = () => {
       img: "https://www.bigbasket.com/media/uploads/p/m/40016992_6-mccain-veggie-fingers-veggie-delight-with-corn-carrot-peas.jpg?tr=w-1920,q=80",
     },
     {
-      id: 5,
+      id: 5,   
       name: "potato-bites",
       price: 30,
       img: "https://www.bigbasket.com/media/uploads/p/m/206433_8-mccain-potato-bites-chilli-garlic.jpg?tr=w-1920,q=80",

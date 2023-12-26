@@ -1,4 +1,4 @@
- import React, { useState } from "react";
+import React, { useState } from "react";
 const Navbar = ({
   showCart,
   setShowCart,
@@ -12,7 +12,15 @@ const Navbar = ({
     newCart.splice(index, 1);
     setCart(newCart);
   };
+  const [cartHeight, setCartHeight] = useState(0);
+  
+  const toggleCart = () => {
+    setShowCart(!showCart);
 
+
+    setCartHeight(showCart ? 0 : 300); 
+    
+  };
   const calculateTotal = () => {
     return cart.reduce((total, item) => total + item.price, 0);
   };
@@ -30,21 +38,19 @@ const Navbar = ({
             className="p-2 border border-gray-300 rounded mr-4 text-[black]"
           />
           <button
-            onClick={() => setShowCart(!showCart)}
+            onClick={toggleCart}
             className="bg-blue-500 text-white px-4 py-2 rounded-full"
           >
             Cart
           </button>
           {showCart && (
-            <div className="cart-container absolute right-0 mt-4 bg-white border border-gray-300 p-4 rounded shadow-lg w-[500px] overflow-y-[0px]">
-             
-              <h3 className="text-xl text-[black] font-semibold mb-2 mt-[50px]">Shopping Cart</h3>
+            <div className="cart-container absolute right-0 mt-[100px] bg-white border border-gray-300 p-4 rounded shadow-lg w-[500px] overflow-y-[0px] max-h-[2000px]"  style={{ marginTop: cartHeight }}>
+              <h3 className="text-xl text-[black] font-semibold mb-2 mt-[50px]">
+                Shopping Cart
+              </h3>
               <ul className="space-y-2">
                 {cart.map((item, index) => (
-                  <li
-                    key={index}
-                    className="flex items-center "
-                  >
+                  <li key={index} className="flex items-center ">
                     <img
                       src={item.img}
                       alt={item.name}
@@ -59,19 +65,19 @@ const Navbar = ({
                       Remove
                     </button>
                   </li>
-                  
                 ))}
-                 <button
-                className="text-white text-gray-400 bg-black cursor-pointer transition duration-400 ease-in-out border-inherit border-2 border-solid pl-[10px] pr-[10px] rounded-[50px] ml-[400px]   "
-                onClick={() => setShowCart(!showCart)}
-              >
-                Close
-              </button>
-              <div className="mt-4">
-                <strong className="text-[black]">Total: ${calculateTotal()}</strong>
-              </div>
+                <button
+                  className="text-white text-gray-400 bg-black cursor-pointer transition duration-400 ease-in-out border-inherit border-2 border-solid pl-[10px] pr-[10px] rounded-[50px] ml-[400px]   "
+                  onClick={() => setShowCart(!showCart)}
+                >
+                  Close
+                </button>
+                <div className="mt-4">
+                  <strong className="text-[black]">
+                    Total: ${calculateTotal()}
+                  </strong>
+                </div>
               </ul>
-              
             </div>
           )}
         </div>
@@ -96,7 +102,7 @@ const Shoping = () => {
     },
     {
       id: 3,
-      name: "green-peas", 
+      name: "green-peas",
       price: 25,
       img: "https://www.bigbasket.com/media/uploads/p/m/103692_2-safal-frozen-green-peas.jpg?tr=w-1920,q=80",
     },
@@ -107,7 +113,7 @@ const Shoping = () => {
       img: "https://www.bigbasket.com/media/uploads/p/m/40016992_6-mccain-veggie-fingers-veggie-delight-with-corn-carrot-peas.jpg?tr=w-1920,q=80",
     },
     {
-      id: 5,   
+      id: 5,
       name: "potato-bites",
       price: 30,
       img: "https://www.bigbasket.com/media/uploads/p/m/206433_8-mccain-potato-bites-chilli-garlic.jpg?tr=w-1920,q=80",
@@ -118,7 +124,12 @@ const Shoping = () => {
       price: 25,
       img: "https://www.bigbasket.com/media/uploads/p/m/103692_2-safal-frozen-green-peas.jpg?tr=w-1920,q=80",
     },
-    { id: 7, name: "green-peas", price: 100, img: "" },
+    {
+      id: 7,
+      name: "green-peas",
+      price: 100,
+      img: "https://www.bigbasket.com/media/uploads/p/m/103692_2-safal-frozen-green-peas.jpg?tr=w-1920,q=80",
+    },
   ]);
 
   const [cart, setCart] = useState([]);
@@ -127,6 +138,8 @@ const Shoping = () => {
 
   const addToCart = (product) => {
     setCart([...cart, product]);
+   
+
   };
 
   const filteredProducts = products.filter((product) =>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 const Navbar = ({
   showCart,
   setShowCart,
@@ -12,17 +13,22 @@ const Navbar = ({
     newCart.splice(index, 1);
     setCart(newCart);
   };
+
+  // const increaseQuantity = (index) => {
+  //   const updatedCart = [...cart];
+  //   updatedCart[index].quantity += 1;
+  //   setCart(updatedCart);
+  // };
+
   const [cartHeight, setCartHeight] = useState(0);
-  
+
   const toggleCart = () => {
     setShowCart(!showCart);
-
-
-    setCartHeight(showCart ? 0 : 300); 
-    
+    setCartHeight(showCart ? 0 : 300);
   };
+
   const calculateTotal = () => {
-    return cart.reduce((total, item) => total + item.price, 0);
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
   return (
@@ -44,7 +50,10 @@ const Navbar = ({
             Cart
           </button>
           {showCart && (
-            <div className="cart-container absolute right-0 mt-[100px] bg-white border border-gray-300 p-4 rounded shadow-lg w-[500px] overflow-y-[0px] max-h-[2000px]"  style={{ marginTop: cartHeight }}>
+            <div
+              className="cart-container absolute right-0 mt-[100px] bg-white border border-gray-300 p-4 rounded shadow-lg w-[500px] overflow-y-[0px] max-h-[2000px]"
+              style={{ marginTop: cartHeight }}
+            >
               <h3 className="text-xl text-[black] font-semibold mb-2 mt-[50px]">
                 Shopping Cart
               </h3>
@@ -57,7 +66,10 @@ const Navbar = ({
                       className="w-8 h-8 object-cover mr-2"
                     />
                     <span className="text-gray-800"> {item.name}</span>
-                    <span className="text-[black]">${item.price}</span>
+                    <span className="text-[black]">
+                      ${item.price} x {item.quantity}
+                    </span>
+
                     <button
                       onClick={() => removeItemFromCart(index)}
                       className="ml-2 text-red-500"
@@ -88,6 +100,7 @@ const Navbar = ({
 
 const Shoping = () => {
   const [products, setProducts] = useState([
+    // ... (existing code)
     {
       id: 1,
       name: "fries",
@@ -137,14 +150,22 @@ const Shoping = () => {
   const [showCart, setShowCart] = useState(false);
 
   const addToCart = (product) => {
-    setCart([...cart, product]);
-   
+    // Check if the product is already in the cart
+    const existingProductIndex = cart.findIndex(
+      (item) => item.id === product.id
+    );
 
+    if (existingProductIndex !== -1) {
+      // If the product is already in the cart, update its quantity
+      const updatedCart = [...cart];
+      updatedCart[existingProductIndex].quantity += 1;
+      setCart(updatedCart);
+    } else {
+      // If the product is not in the cart, add it with a quantity of 1
+      const updatedProduct = { ...product, quantity: 1 };
+      setCart([...cart, updatedProduct]);
+    }
   };
-
-  const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
   return (
     <div className="min-h-screen">
@@ -160,7 +181,7 @@ const Shoping = () => {
         <h2 className="text-3xl font-semibold mb-4">Shopping Page</h2>
 
         <div className="grid grid-cols-3 gap-4">
-          {filteredProducts.map((product) => (
+          {products.map((product) => (
             <div key={product.id} className="bg-gray-200 p-4 rounded-lg">
               <img
                 src={product.img}

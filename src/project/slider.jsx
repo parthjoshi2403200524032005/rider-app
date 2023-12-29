@@ -22,7 +22,7 @@ const Slider = () => {
   };
 
   return (
-    <div className="relative mx-auto max-w-8xl h-[750px] mt-[105px] overflow-hidden">
+    <div className="relative mx-auto max-w-8xl h-[750px] mt-[80px] overflow-hidden">
       <button
         onClick={prevSlide}
         className="absolute top-1/2 transform -translate-y-1/2 left-0 text-3xl text-white hover:text-gray-300 focus:outline-none"

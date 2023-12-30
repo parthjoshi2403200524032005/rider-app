@@ -14,12 +14,6 @@ const Navbar = ({
     setCart(newCart);
   };
 
-  // const increaseQuantity = (index) => {
-  //   const updatedCart = [...cart];
-  //   updatedCart[index].quantity += 1;
-  //   setCart(updatedCart);
-  // };
-
   const [cartHeight, setCartHeight] = useState(0);
 
   const toggleCart = () => {
@@ -40,9 +34,13 @@ const Navbar = ({
             type="text"
             placeholder="Search products"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              console.log("Search Query:", e.target.value);
+            }}
             className="p-2 border border-gray-300 rounded mr-4 text-[black]"
           />
+
           <button
             onClick={toggleCart}
             className="bg-blue-500 text-white px-4 py-2 rounded-full"
@@ -181,23 +179,31 @@ const Shoping = () => {
         <h2 className="text-3xl font-semibold mb-4">Shopping Page</h2>
 
         <div className="grid grid-cols-3 gap-4">
-          {products.map((product) => (
-            <div key={product.id} className="bg-gray-200 p-4 rounded-lg">
-              <img
-                src={product.img}
-                alt={product.name}
-                className="w-24 h-24 object-cover mb-2"
-              />
-              <div className="text-sm">{product.name}</div>
-              <div className="text-lg font-bold">${product.price}</div>
-              <button
-                onClick={() => addToCart(product)}
-                className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-full"
-              >
-                Add to Cart
-              </button>
-            </div>
-          ))}
+        {products
+  .filter((product) =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  )
+  .map((product) => (
+    
+    <div key={product.id} className="bg-gray-200 p-4 rounded-lg">
+    <img
+      src={product.img}
+      alt={product.name}
+      className="w-24 h-24 object-cover mb-2"
+    />
+    <div className="text-sm">{product.name}</div>
+    <div className="text-lg font-bold">${product.price}</div>
+    <button
+      onClick={() => addToCart(product)}
+      className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-full"
+    >
+      Add to Cart
+    </button>
+  </div>
+  ))}
+         
+          
+          
         </div>
       </div>
     </div>

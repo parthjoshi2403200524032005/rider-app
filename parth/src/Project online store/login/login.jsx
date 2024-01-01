@@ -9,7 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-   const handleLogin = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const actualData = {
@@ -51,14 +51,14 @@ const Login = () => {
     <div className="flex h-screen items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-500">
       <div className="flex">
         <div
-          className="bg-no-repeat bg-cover h-[600px] w-[600px] rounded-l-lg " 
+          className="bg-no-repeat bg-cover h-[600px] w-[600px] rounded-l-lg "
           style={{ backgroundImage: `url(${image})` }}
         ></div>
         <div className="bg-[#202124] p-8 shadow-md w-96 rounded-r-lg ">
           <h1 className="text-3xl font-bold mb-6 text-white">Login</h1>
           <form
             onSubmit={handleLogin}
-            className="transition-transform duration-300 transform hover:scale-105"
+            className="transition-transform duration-500 transform hover:scale-[0.96]"
           >
             <div className="mb-4">
               <label
@@ -122,6 +122,19 @@ const Login = () => {
                 />
               </svg>
             </button>
+            <div className="w-[300px] bg-blue-500 text-white p-[10px] rounded-[10px] hover:bg-blue-600 mt-[50px] flex  justify-center gap-[10px] ml-[10px] ">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="21"
+                height="21"
+                fill="currentColor"
+                class="bi bi-facebook"
+                viewBox="0 0 16 16"
+              >
+                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+              </svg>
+             <h1 className="font-bold"> Login With Facebook</h1>
+            </div>
           </form>
         </div>
       </div>

@@ -24,7 +24,17 @@ const Navbar = ({
   const calculateTotal = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
-
+  const decrementItemQuantity = (index) => {
+    const newCart = [...cart];
+    if (newCart[index].quantity > 1) {
+      newCart[index].quantity -= 1;
+      setCart(newCart);
+    } else {
+      // Remove the item if its quantity is 1
+      newCart.splice(index, 1);
+      setCart(newCart);
+    }
+  };
   return (
     <nav className="bg-gray-800 p-4 text-white relative">
       <div className="container mx-auto flex justify-between items-center">
@@ -67,6 +77,12 @@ const Navbar = ({
                     <span className="text-[black]">
                       ${item.price} x {item.quantity}
                     </span>
+                    <button
+                      onClick={() => decrementItemQuantity(index)}
+                      className="ml-2 text-blue-500"
+                    >
+                      Decrease
+                    </button>
 
                     <button
                       onClick={() => removeItemFromCart(index)}
@@ -98,7 +114,7 @@ const Navbar = ({
 
 const Shoping = () => {
   const [products, setProducts] = useState([
-    // ... (existing code)
+   
     {
       id: 1,
       name: "fries",
@@ -165,6 +181,7 @@ const Shoping = () => {
     }
   };
 
+
   return (
     <div className="min-h-screen">
       <Navbar
@@ -179,31 +196,28 @@ const Shoping = () => {
         <h2 className="text-3xl font-semibold mb-4">Shopping Page</h2>
 
         <div className="grid grid-cols-3 gap-4">
-        {products
-  .filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
-  )
-  .map((product) => (
-    
-    <div key={product.id} className="bg-gray-200 p-4 rounded-lg">
-    <img
-      src={product.img}
-      alt={product.name}
-      className="w-24 h-24 object-cover mb-2"
-    />
-    <div className="text-sm">{product.name}</div>
-    <div className="text-lg font-bold">${product.price}</div>
-    <button
-      onClick={() => addToCart(product)}
-      className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-full"
-    >
-      Add to Cart
-    </button>
-  </div>
-  ))}
-         
-          
-          
+          {products
+            .filter((product) =>
+              product.name.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+            .map((product) => (
+              <div key={product.id} className="bg-gray-200 p-4 rounded-lg">
+                <img
+                  src={product.img}
+                  alt={product.name}
+                  className="w-24 h-24 object-cover mb-2"
+                />
+                <div className="text-sm">{product.name}</div>
+                <div className="text-lg font-bold">${product.price}</div>
+
+                <button
+                  onClick={() => addToCart(product)}
+                  className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-full"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            ))}
         </div>
       </div>
     </div>

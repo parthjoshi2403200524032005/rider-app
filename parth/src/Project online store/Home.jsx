@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 import logo from "../image/logo.png";
 
@@ -90,6 +91,10 @@ const Navbar = () => {
     setIsScrolled(scrollPosition > scrollThreshold);
   };
 
+
+  axios.get("http://localhost:8000/").then((res) => console.log(res.data));
+  const handleClick = axios.post("http://localhost:8000/").then((res) => console.log(res.data));
+  console.log(handleClick)
   return (
     <>
       <div className="bg-[black]">

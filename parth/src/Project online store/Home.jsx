@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
 import logo from "../image/logo.png";
-
 import { useNavigate } from "react-router-dom";
-
 import Slider from "./slider";
 import { Footer } from "./footer";
 
